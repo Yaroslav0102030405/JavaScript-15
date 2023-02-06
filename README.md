@@ -1,10 +1,10 @@
-# JS-lesson-13
+# JS-lesson-14
 
-- Обьекты window и document
-- Поиск DOM-узлов с querySelector и querySelectorAll
-- Свойство textContent
-- Свойства "навигации" по DOM-узлам
-- Работа с classlist и атрибутами
-- Создание узлов
-- Вставка узлов: appendChild, insertBefore, append, prepend
-- Парс строки: innerHTML и insertAdjacentHTML
+План занятия
+
+- События
+- Создание и удаление слушателей
+- Обьект события
+- Поведение по умолчанию
+- Основные события мыши, форм, клавиатуры
+- Список всех доступных событий (https://developer.mozilla.org/en-US/docs/Web/Events)
