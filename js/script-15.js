@@ -58,3 +58,4 @@ function onAddBtnClick() {
     container.appendChild(btn)
     labelCounter += 1
 }
+
