@@ -13,3 +13,41 @@ const colors = [
   { hex: "#795548", rgb: "121,85,72" },
   { hex: "#607d8b", rgb: "96,125,139" },
 ];
+
+/*
+ * Задача создать динамические карточки по шаблону
+ */
+
+// 1 шаг. Создадим динамическую разметку. Будем использовать шаблонные строки это будет быстрее разработка
+// 2 шаг Зарендерить разметку
+
+const paletteContainer = document.querySelector('.js-palette')
+const cardsMarkup = createColorCardsMarkup(colors)
+
+paletteContainer.insertAdjacentHTML('beforeend', cardsMarkup)
+// insertAdjacentHTML - мы говорим браузеру возьми и сам распарся
+// beforeend - распарся перед концом
+console.log(createColorCardsMarkup(colors));
+
+function createColorCardsMarkup(colors) {
+    return colors.map(({ hex, rgb }) => {
+        // деструктуризировали 2 свойства
+        return `<div class="color-card">
+            <div
+                class="color-swatch"
+                data-hex="${hex}"
+                data-rgb="${rgb}"
+                style="background-color: ${hex}"
+            ></div>
+            <div class="color-meta">
+                <p>HEX: ${hex}</p>
+                <p>RGB: ${rgb}</p>
+            </div>
+        </div>`;
+    })
+        .join('');
+    // метод джоин бере массив строк и сшивает в одну строку
+}
+
+// это 70% фронтенда когда от бекенда будет приходить массив с обьектами 
+// а ты будешь в интерфейсе рисовать по этим обьектам какой - то интерфейс
