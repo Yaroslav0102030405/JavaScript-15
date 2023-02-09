@@ -33,6 +33,7 @@ paletteContainer.addEventListener("click", onPaletteContainerClick);
 
 // console.log(createColorCardsMarkup(colors));
 
+// Эта функция отвечает за создание разметки
 function createColorCardsMarkup(colors) {
   return colors
     .map(({ hex, rgb }) => {
@@ -56,6 +57,8 @@ function createColorCardsMarkup(colors) {
 
 // это 70% фронтенда когда от бекенда будет приходить массив с обьектами
 // а ты будешь в интерфейсе рисовать по этим обьектам какой - то интерфейс
+
+// эта функция обо=работчик событий на контейнере клика
 function onPaletteContainerClick(evt) {
   const isColorSwatch = evt.target.classList.contains("color-swatch");
   if (!isColorSwatch) {
@@ -73,9 +76,9 @@ function onPaletteContainerClick(evt) {
   const parentColorCard = swatchEl.closest(".color-card");
   // closest это делает на верх
 
-  parentColorCard.classList.add("is-active");
-  // console.log(evt.target.dataset.hex)
-  document.body.style.backgroundColor = swatchEl.dataset.hex;
+    parentColorCard.classList.add("is-active");
+    
+    setBodyBgColor(swatchEl.dataset.hex)
 }
 
 // Что мы сделали?
@@ -91,3 +94,10 @@ function onPaletteContainerClick(evt) {
 // проверку куда мы клацнули (научились клас=цать только в свотчь)
 
 // 3 Мы начали добавлть и снимать активный класс (анимации делать с помощью классов)
+
+// функция которая создает активную карточку и снимает ее
+
+// функция которая менят беграйнколор
+function setBodyBgColor(color) {
+  document.body.style.backgroundColor = color;
+}
