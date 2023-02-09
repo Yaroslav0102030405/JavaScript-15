@@ -58,29 +58,6 @@ function createColorCardsMarkup(colors) {
 // это 70% фронтенда когда от бекенда будет приходить массив с обьектами
 // а ты будешь в интерфейсе рисовать по этим обьектам какой - то интерфейс
 
-// эта функция обо=работчик событий на контейнере клика
-function onPaletteContainerClick(evt) {
-  const isColorSwatch = evt.target.classList.contains("color-swatch");
-  if (!isColorSwatch) {
-    // если это не элемент колорсватч тогда мы выходим
-    return;
-  }
-
-  const currentActiveCard = document.querySelector(".color-card.is-active");
-
-  if (currentActiveCard) {
-    currentActiveCard.classList.remove("is-active");
-  }
-
-  const swatchEl = evt.target;
-  const parentColorCard = swatchEl.closest(".color-card");
-  // closest это делает на верх
-
-    parentColorCard.classList.add("is-active");
-    
-    setBodyBgColor(swatchEl.dataset.hex)
-}
-
 // Что мы сделали?
 // 1 Создали функцию которая рендерит всю нашу разметку (галерею цветов)
 // у нас есть шаблон одного элемента и есть массив обьектов
@@ -95,9 +72,43 @@ function onPaletteContainerClick(evt) {
 
 // 3 Мы начали добавлть и снимать активный класс (анимации делать с помощью классов)
 
-// функция которая создает активную карточку и снимает ее
+// эта функция обо=работчик событий на контейнере клика
+function onPaletteContainerClick(evt) {
+  const isColorSwatch = evt.target.classList.contains("color-swatch");
+  if (!isColorSwatch) {
+    // если это не элемент колорсватч тогда мы выходим
+    return;
+  }
+
+  const swatchEl = evt.target;
+  const parentColorCard = swatchEl.closest(".color-card");
+  // closest это делает на верх
+
+  removeActiveCardClass();
+  // убрать активный класс
+  addActiveCardClass(parentColorCard);
+  // добавить активный класс
+  setBodyBgColor(swatchEl.dataset.hex);
+}
 
 // функция которая менят беграйнколор
 function setBodyBgColor(color) {
   document.body.style.backgroundColor = color;
 }
+
+// функция которая создает активную карточку и снимает ее
+function removeActiveCardClass() {
+  const currentActiveCard = document.querySelector(".color-card.is-active");
+
+  if (currentActiveCard) {
+    currentActiveCard.classList.remove("is-active");
+  }
+}
+
+function addActiveCardClass(card) {
+  card.classList.add("is-active");
+}
+
+// если тебе нужно знать что каждая функция делает то это называеться реализация ты заходишь и смотришь
+// если не нужно смотреть то понятно по имени что они делают
+// функция это и есть абстракция ты скрывашеь реализацию кода и открываешь красивое имя
