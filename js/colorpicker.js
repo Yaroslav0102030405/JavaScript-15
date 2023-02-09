@@ -20,20 +20,24 @@ const colors = [
 
 // 1 шаг. Создадим динамическую разметку. Будем использовать шаблонные строки это будет быстрее разработка
 // 2 шаг Зарендерить разметку
-// 3 шаг При клике на цвет изменять его в боди (будем на общий контаинер вешать слушателя на клик)
+// 3 шаг При клике на цвет изменять цвет боди или выводить что-то в консоль. Будем использовать делегирование (будем на общий контаинер вешать слушателя на клик)
+// добавим на сам элемент класс изактив
+const paletteContainer = document.querySelector(".js-palette");
+const cardsMarkup = createColorCardsMarkup(colors);
 
-const paletteContainer = document.querySelector('.js-palette')
-const cardsMarkup = createColorCardsMarkup(colors)
-
-paletteContainer.insertAdjacentHTML('beforeend', cardsMarkup)
+paletteContainer.insertAdjacentHTML("beforeend", cardsMarkup);
 // insertAdjacentHTML - мы говорим браузеру возьми и сам распарся
 // beforeend - распарся перед концом
-console.log(createColorCardsMarkup(colors));
+
+paletteContainer.addEventListener("click", onPaletteContainerClick);
+
+// console.log(createColorCardsMarkup(colors));
 
 function createColorCardsMarkup(colors) {
-    return colors.map(({ hex, rgb }) => {
-        // деструктуризировали 2 свойства
-        return `<div class="color-card">
+  return colors
+    .map(({ hex, rgb }) => {
+      // деструктуризировали 2 свойства
+      return `<div class="color-card">
             <div
                 class="color-swatch"
                 data-hex="${hex}"
@@ -46,9 +50,44 @@ function createColorCardsMarkup(colors) {
             </div>
         </div>`;
     })
-        .join('');
-    // метод джоин бере массив строк и сшивает в одну строку
+    .join("");
+  // метод джоин бере массив строк и сшивает в одну строку
 }
 
-// это 70% фронтенда когда от бекенда будет приходить массив с обьектами 
+// это 70% фронтенда когда от бекенда будет приходить массив с обьектами
 // а ты будешь в интерфейсе рисовать по этим обьектам какой - то интерфейс
+function onPaletteContainerClick(evt) {
+  const isColorSwatch = evt.target.classList.contains("color-swatch");
+  if (!isColorSwatch) {
+    // если это не элемент колорсватч тогда мы выходим
+    return;
+  }
+
+  const currentActiveCard = document.querySelector(".color-card.is-active");
+
+  if (currentActiveCard) {
+    currentActiveCard.classList.remove("is-active");
+  }
+
+  const swatchEl = evt.target;
+  const parentColorCard = swatchEl.closest(".color-card");
+  // closest это делает на верх
+
+  parentColorCard.classList.add("is-active");
+  // console.log(evt.target.dataset.hex)
+  document.body.style.backgroundColor = swatchEl.dataset.hex;
+}
+
+// Что мы сделали?
+// 1 Создали функцию которая рендерит всю нашу разметку (галерею цветов)
+// у нас есть шаблон одного элемента и есть массив обьектов
+// мы этот обьект массивов мекнули сделали для каждого обьекта карточку
+// поставили в те места где нужно (шаблонные строки)
+// и из этой функции вернули целую строку
+// Сделали огромную строку всей разметки и повесили эту строку в уже существующий элемент в нашу палитру
+
+// 2 Реализовали делегирование
+// Мы повесили делегирование на контайнер и начали реализовывать функционал
+// проверку куда мы клацнули (научились клас=цать только в свотчь)
+
+// 3 Мы начали добавлть и снимать активный класс (анимации делать с помощью классов)
