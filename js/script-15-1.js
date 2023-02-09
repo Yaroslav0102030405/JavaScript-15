@@ -49,8 +49,22 @@ function onTagsContainerClick(evt) {
     return;
   }
 
+  const btn = evt.target
+  const tag = btn.dataset.value
+  const isActive = btn.classList.contains("tags__btn-active");
+
+  if (isActive) {
+    selectedTag.delete(tag)
+  } else {
+    selectedTag.add(tag)
+  }
+
   evt.target.classList.toggle("tags__btn-active");
   // classList.toggle - это свойство работает так если там класс есть оно его снимет если класса нет оно его добавит
   // selectedTag.push(evt.target.dataset.value)
   console.log(selectedTag)
 }
+// При создании класса сделать add() при удалении класса сделать delete()
+// При каком клике нужно удалять из датасет какое-то значение? При клике на котором при текущем элементе уже есть этот класс
+
+// тернарный оператор не для вызова функции а для присвоения значения по условию
