@@ -20,6 +20,7 @@ const colors = [
 
 // 1 шаг. Создадим динамическую разметку. Будем использовать шаблонные строки это будет быстрее разработка
 // 2 шаг Зарендерить разметку
+// 3 шаг При клике на цвет изменять его в боди (будем на общий контаинер вешать слушателя на клик)
 
 const paletteContainer = document.querySelector('.js-palette')
 const cardsMarkup = createColorCardsMarkup(colors)
