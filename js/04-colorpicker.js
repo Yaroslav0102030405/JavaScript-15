@@ -25,6 +25,7 @@ const colors = [
 const paletteContainer = document.querySelector(".js-palette");
 const cardsMarkup = createColorCardsMarkup(colors);
 
+// добавить в разметку перед концом
 paletteContainer.insertAdjacentHTML("beforeend", cardsMarkup);
 // insertAdjacentHTML - мы говорим браузеру возьми и сам распарся
 // beforeend - распарся перед концом
@@ -51,7 +52,7 @@ function createColorCardsMarkup(colors) {
             </div>
         </div>`;
     })
-    .join("");
+    .join(""); //разделяем по пробелу
   // метод джоин бере массив строк и сшивает в одну строку
 }
 
@@ -84,9 +85,14 @@ function onPaletteContainerClick(evt) {
   const parentColorCard = swatchEl.closest(".color-card");
   // closest это делает на верх
 
+  // вызов функции
   removeActiveCardClass();
+
+  // Вызов функции с аргументом
   // убрать активный класс
   addActiveCardClass(parentColorCard);
+
+  // вызов функции с аргументом
   // добавить активный класс
   setBodyBgColor(swatchEl.dataset.hex);
 }

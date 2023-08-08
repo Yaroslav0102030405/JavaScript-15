@@ -3,9 +3,11 @@ body {
 }
 
 .palette {
-    display: grid;
+    /* display: grid; */
+    display: flex;
+    flex-wrap: wrap;
     max-width: 1200px;
-    grid-template-columns: repeat(auto-fill, minmax(200ms, 1fr));
+    /* grid-template-columns: repeat(auto-fill, minmax(200ms, 1fr)); */
     grid-gap: 12px;
     padding: 0;
     list-style: none;
@@ -14,6 +16,7 @@ body {
 }
 
 .color-card {
+    width: 200px;
     padding: 5px;
     border-radius: 4px;
     background-color: #fff;
