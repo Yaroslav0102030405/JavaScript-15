@@ -38,33 +38,36 @@
  * Задача 2 продолжение но по другому
  * Давайте сделем чтобы этих тегов можно было выбрать сколько угодно (чтобы по джава скрпит и по ноде показала статьи)
  */
-
+// получили доступ к ссылке (элементу)
 const tagsContainer = document.querySelector(".js-tags");
-const selectedTag = new Set()
+// new Set() - добавляет только уникальные элементы дуближей игнорирует
+const selectedTag = new Set();
 
+// повесили слушателя событий
 tagsContainer.addEventListener("click", onTagsContainerClick);
 
+// функция которая при клике на кнопку добавляет класс и убирает класс при повтором клике на туже кнопку
 function onTagsContainerClick(evt) {
+  // проверям что мы кликнули по кнопке
   if (evt.target.nodeName !== "BUTTON") {
     return;
   }
 
-  const btn = evt.target
-  const tag = btn.dataset.value
+  const btn = evt.target;
+  const tag = btn.dataset.value;
   const isActive = btn.classList.contains("tags__btn-active");
 
+  // если есть активній класс тогда удаляем
   if (isActive) {
-    selectedTag.delete(tag)
+    selectedTag.delete(tag);
+    // если класса активного нет тогда добаляем
   } else {
-    selectedTag.add(tag)
+    selectedTag.add(tag);
+    // добавили тег в пу3стой массив
   }
 
   evt.target.classList.toggle("tags__btn-active");
   // classList.toggle - это свойство работает так если там класс есть оно его снимет если класса нет оно его добавит
   // selectedTag.push(evt.target.dataset.value)
-  console.log(selectedTag)
+  console.log(selectedTag);
 }
-// При создании класса сделать add() при удалении класса сделать delete()
-// При каком клике нужно удалять из датасет какое-то значение? При клике на котором при текущем элементе уже есть этот класс
-
-// тернарный оператор не для вызова функции а для присвоения значения по условию

@@ -18,22 +18,28 @@
 
 /*
  * Делегирование событий
- * общий слушатель
- * фильтр цели клика
+ * - общий слушатель
+ * - фильтр цели клика
  */
 
-const container = document.querySelector(".js-container");
-container.addEventListener('click', onClick);
+// Свойство nodeName - есть у каждого элемента
 
+// получаем доступ к ссылке (елементу)
+const container = document.querySelector(".js-container");
+// устанавливаем слушателя событий
+container.addEventListener("click", onClick);
+
+// функция которая при нажатии на кнопку
 function onClick(evt) {
-    // если мы хотим чтобы у нас работало только на кнопку (метод паркклоус - если нет то уходим)
-    if (evt.target.nodeName !== 'BUTTON') {
-        return
-    }
-        // console.log(evt.target.nodeName);
-    console.log(event.target.textContent);
-    // через таргет вы можете узнать на какой элемент произошел клик внутри этого родителя
-    // текстконтент показывает на какую кнопку нажали был клик
+  // если мы кликнули не по кнопке то ретерм просто выходим
+  if (evt.target.nodeName !== "BUTTON") {
+    return;
+  }
+  // console.log(evt.target.nodeName);
+  // ссылка на кнопку на которую мы кликнули
+  console.log(evt.target.textContent);
+  // через таргет вы можете узнать на какой элемент произошел клик внутри этого родителя
+  // текстконтент показывает на какую кнопку нажали был клик
 }
 
 // Дальше будем фильтровать. мы хотим обработать только клики на кнопку а не на контейнер тоже
@@ -42,20 +48,24 @@ function onClick(evt) {
 // теперь если мы кликаем в диф то никакого эффекта - это называется фильтр цели клика
 
 /*
-* Код добавления кнопок
-*/
+ * Код добавления кнопок
+ */
 
-const addBtn = document.querySelector('.js-add-btn')
-let labelCounter = 6
+const addBtn = document.querySelector(".js-add-btn");
+let labelCounter = 6;
 
-addBtn.addEventListener('click', onAddBtnClick)
+addBtn.addEventListener("click", onAddBtnClick);
 
+// функция которая создает новую кнопку
 function onAddBtnClick() {
-    const btn = document.createElement('button')
-    btn.textContent = `Кнопка ${labelCounter}`
-    btn.type = 'button'
+  // создает кнопку баттон
+  const btn = document.createElement("button");
+  // создает название кнопки через переменную
+  btn.textContent = `Кнопка ${labelCounter}`;
+  // устанавливает тип кнопки
+  btn.type = "button";
 
-    container.appendChild(btn)
-    labelCounter += 1
+  container.appendChild(btn);
+  // увеличиваем номер кнопки на 1
+  labelCounter += 1;
 }
-

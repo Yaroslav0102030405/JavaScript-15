@@ -1,0 +1,58 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Document</title>
+    <!-- <link rel="stylesheet" href="./css/styles.css"> -->
+    <style>
+      .tags {
+        display: flex;
+        list-style: none;
+      }
+      button {
+        margin: 4px;
+      }
+
+      .tags__btn-active {
+        color: #fff;
+        background-color: #3f51b5;
+      }
+    </style>
+  </head>
+  <body>
+    <p><a href="/">На главную</a></p>
+    <hr />
+    <!-- на этот общий предок мы повесим делегирование событий чтобы слушать накажтие на каждую кнопку -->
+    <ul class="tags js-tags">
+      <li class="tags__item">
+        <button class="tags__btn" data-value="html">#html</button>
+      </li>
+      <!-- Вы не хотите читать содержимое которое храниться в тегов вы хотите все хранить в атрибутах -->
+      <li class="tags__item">
+        <button class="tags__btn" data-value="css">#css</button>
+      </li>
+      <li class="tags__item">
+        <button class="tags__btn" data-value="javascript">#javascript</button>
+      </li>
+      <li class="tags__item">
+        <button class="tags__btn" data-value="npm">#npm</button>
+      </li>
+      <li class="tags__item">
+        <button class="tags__btn" data-value="webpack">#webpack</button>
+      </li>
+      <li class="tags__item">
+        <button class="tags__btn" data-value="react">#react</button>
+      </li>
+      <li class="tags__item">
+        <button class="tags__btn" data-value="redux">#redux</button>
+      </li>
+      <li class="tags__item">
+        <button class="tags__btn" data-value="nodejs">#nodejs</button>
+      </li>
+    </ul>
+    <hr />
+    <script src="./js/03-tags.js" type="module"></script>
+  </body>
+</html>
